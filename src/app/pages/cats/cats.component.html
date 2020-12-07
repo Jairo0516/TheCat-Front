@@ -1,3 +1,31 @@
-<h1>
-  Gatos
-</h1>
+<div class="row">
+  <div class="col-md-12 p-4 align-content-end">
+    <a href="/cats/create" class="btn btn-sm btn-info">
+      <span class="fa fa-plus-square"></span>
+      Crear Gato</a>
+  </div>
+</div>
+<div class="row">
+  <div *ngFor="let cat of cats; index as i" class="col-xl-2 d-inline-flex justify-content-center" style="margin-right: 2rem;">
+    <div class="card" style="width: 16rem;">
+      <img [src]="cat.image" class="card-img-top" alt="cat" style="width: 170px;height: 170px;padding: 10px;">
+      <div class="card-body">
+        <h6 class="card-title">{{cat.name}}</h6>
+        <p class="card-text">Edad: {{cat.age}}</p>
+        <p class="card-text">Raza: {{cat.breed}}</p>
+        <div class="row">
+          <div class="col-xl-6">
+            <a href="/cats/update/{{cat._id}}" class="btn btn-sm btn-info btn-block">
+              <span class="fa fa-edit"></span>
+            </a>
+          </div>
+          <div class="col-xl-6">
+            <button class="btn btn-sm btn-danger btn-block" (click)="deleteCat(cat._id)">
+              <span class="fa fa-trash"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

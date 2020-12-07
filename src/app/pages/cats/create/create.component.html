@@ -1,0 +1,77 @@
+<!-- Modal -->
+<div class="modal fade" id="imagesModal" tabindex="-1" role="dialog" aria-labelledby="imagesModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="imagesModalLabel">Seleccionar imagen de gato favorito</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-3" *ngFor="let imageFavorite of imagesFavorites">
+            <div class="card" style="width: 12rem;">
+              <div class="card-body d-flex justify-content-center">
+                <img type="button" [src]="imageFavorite.image.url" class="card-img-top" alt="cat" style="width: 10rem;height: 10rem;padding: 10px;" (click)="selectImage(imageFavorite.image.url)">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-lg btn-success" data-dismiss="modal">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 p-4 align-content-end">
+    <a href="/cats" class="btn btn-sm btn-info">
+      <span class="fa fa-mail-reply"></span>
+      Volver</a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-6 d-inline-flex justify-content-center">
+    <img [src]="catData.image" class="card-img-top" alt="cat" style="width: 18rem;height: 18rem;padding: 5px;">
+  </div>
+  <div class="col-xl-4 d-inline-flex justify-content-center">
+    <form [formGroup]="FormCat" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-12 p-2">
+          <div class="btn-group" role="group" aria-label="Group button">
+            <input type="text" class="form-control" formControlName="image" [ngModel]="catData.image" readonly>
+            <button type="button" class="btn btn-sm btn-info" title="Seleccionar imagen favorita" data-toggle="modal" data-target="#imagesModal">
+              <span class="fa fa-cloud-upload"></span>
+            </button>
+          </div>
+        </div>
+        <div class="col-md-12 p-2">
+          <label for="">Nombre:</label>
+          <input type="text" class="form-control" formControlName="name" [ngModel]="catData.name">
+        </div>
+        <div class="col-md-12 p-2">
+          <label for="">Edad:</label>
+          <input type="number" class="form-control" formControlName="age" [ngModel]="catData.age">
+        </div>
+        <div class="col-md-12 p-2">
+          <label for="">Raza:</label>
+          <select  class="form-control" style="width: 100%" formControlName="breed" [ngModel]="catData.breed">
+            <option value=""></option>
+            <option *ngFor="let breed of breeds" [value]="breed" >{{breed}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row p-2">
+        <div class="col-lg-12">
+          <button class="btn btn-sm btn-success btn-block" type="submit">
+            <span class="fa fa-save"></span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
